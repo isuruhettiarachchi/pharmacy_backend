@@ -3,6 +3,7 @@
 var express = require('express')
 var mongoose = require('mongoose')
 var bodyparser = require('body-parser')
+var routes = require('./src/routes/routes')
 
 var config = require('./config')
 
@@ -21,6 +22,8 @@ mongoose.connect(config.db.uri, (err) => {
 app.get('/', (req, res) => {
     res.send('Hell World')
 })
+
+app.use('/', routes)
 
 app.listen(3000, () => {
     console.log('Server started on port 3000')
