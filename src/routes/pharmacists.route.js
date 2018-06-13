@@ -59,7 +59,7 @@ router.get('/name/:name',(req,res)=>{
 })
 
 //Update an Pharmacist by the id
-Route.put('/id/:id', function(req,res){
+router.put('/id/:id', function(req,res){
 
 	Controller.UpdatePharmacistByID(req.params.id, req.body).then(function(data){
 		res.status(data.status).send({message:data.message})
@@ -68,7 +68,7 @@ Route.put('/id/:id', function(req,res){
 		});
 });
 //Update an Pharmacist by the username
-Route.put('/username/:username', function(req,res){
+router.put('/username/:username', function(req,res){
 
 	Controller.UpdatePharmacist(req.params.username, req.body).then(function(data){
 		res.status(data.status).send({message:data.message})

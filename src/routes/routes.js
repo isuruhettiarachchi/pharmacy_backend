@@ -3,7 +3,7 @@ var router = express.Router()
 
 var patients = require('./patients.route')
 var pharmacists = require('./pharmacists.route');
-var reports = reqiure('./reports.route')
+var reports = require('./reports.route')
 
 router.use('/patients', patients);
 

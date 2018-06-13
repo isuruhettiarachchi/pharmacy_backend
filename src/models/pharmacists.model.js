@@ -22,6 +22,7 @@ var Pharmacist = new mongoose.Schema({
         type:String,
         required:false
     }
-})
+});
+mongoose.model('Pharmacist', Pharmacist);
 
-exports.modules = mongoose.model('Pharmacist', Pharmacist);
+module.exports = mongoose;
