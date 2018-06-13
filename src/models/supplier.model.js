@@ -23,7 +23,7 @@ var supplierSchema=new mongoose.Schema({
     },
     country:{
         type:String,
-        required:[true,'supplier id is required']
+        required:[true,'country id is required']
     }
 });
 
