@@ -2,7 +2,7 @@ const mongoose = require('../models/pharmacists.model');
 
 const PharmacistsSchema = mongoose.model('Pharmacist');
 
-var Pharmacists = function () {
+var Pharmacists = () =>{
 
     //add a pharmacist
     this.addPharmacist = (data)=>{
@@ -40,7 +40,7 @@ var Pharmacists = function () {
 
     //gets a pharmacist by user name
     this.getPharmacistByUName = (username)=>{
-        return new Promise((resolve, reject)=>{
+        return new Promise((Resolve, Reject)=>{
 
             PharmacistsSchema.find({username:username}).exec().then((data)=>{
                     Resolve({status:200, message:data});
@@ -52,7 +52,7 @@ var Pharmacists = function () {
     };
     //get pharmacist by role
     this.getPharmacistByRole = (role)=>{
-        return new Promise((resolve, reject)=>{
+        return new Promise((Resolve, Reject)=>{
 
                 PharmacistsSchema.find({role:role}).exec().then((data)=>{
                         Resolve({status:200, message:data});
@@ -64,7 +64,7 @@ var Pharmacists = function () {
     };
     //get pharmacist by name
     this.getPharmacistByName = (name)=>{
-        return new Promise((resolve, reject)=>{
+        return new Promise((Resolve, Reject)=>{
 
                 PharmacistsSchema.find({name:name}).exec().then((data)=>{
                         Resolve({status:200, message:data});
@@ -102,7 +102,7 @@ var Pharmacists = function () {
     this.deletePharmacist = (username) => {
         // id = mongoose.Types.ObjectId(id);
 		return new Promise(function(Resolve,Reject){
-			CustomerSchema.remove({username:username}).exec().then(()=>{
+			ReportSchema.remove({username:username}).exec().then(()=>{
 				Resolve({status : 200, message: "Pharmacist deleted"});
 			}).catch(function(err){
 				Reject({status : 500, message:"Pharmacist can not be deleted"});

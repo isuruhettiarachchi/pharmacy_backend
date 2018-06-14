@@ -4,16 +4,24 @@ var Report = new mongoose.Schema({
 
     id:{
         type:Number,
-        required:true
+        required:true,
+        index:{unique:true}
     },
     name:{
         type:String,
         required:true
     },
+    type:{
+        type:String,
+        required:true
+    },
+    deleted:{
+        type:Boolean,
+        required:true
+    },
     description:{
         type:String,
-        requird:true,
-        index:{unique:true}
+        requird:true
     }
     
 })
