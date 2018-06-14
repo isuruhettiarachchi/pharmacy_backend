@@ -7,7 +7,8 @@ var Patient = new mongoose.Schema({
     },
     paitentId: {
         type: Number,
-        required: true
+        required: true,
+        unique: true
     },
     name: {
         type: String,

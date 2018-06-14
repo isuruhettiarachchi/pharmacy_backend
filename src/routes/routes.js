@@ -10,7 +10,7 @@ var reports = require('./reports.route')
 router.use('/patients', patients);
 router.use('/supplier',supplier);
 router.use('/order',order);
-router.use('/pharmacists', pharmacists);
-router.use('/reports',reports);
+// router.use('/pharmacists', pharmacists);
+// router.use('/reports',reports);
 
 module.exports = router;
