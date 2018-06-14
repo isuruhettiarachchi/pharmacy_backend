@@ -8,7 +8,7 @@ var ObjectID = require('mongodb').ObjectID;
 //get all Report
 router.get('/' , (req, res) => {
     // res.send('Welcome to Report route')
-    Controller.getReport().then((data)=>{
+    Controller.getReports().then((data)=>{
         res.status(data.status).send({message:data.message})
     }).catch((err)=>{
         res.status(err.status).send({message:err.message})
@@ -26,9 +26,9 @@ router.post('/',(req, res)=>{
     )
 })
 
-//get Report by user name
+//get Report by type
 router.get('/type/:type',(req,res)=>{
-    Controller.getReportByUName(req.params.type).then((data)=>{
+    Controller.getReportByType(req.params.type).then((data)=>{
         res.status(data.status).send({message:data.message})
     }).catch(
         (err)=>{
@@ -39,7 +39,7 @@ router.get('/type/:type',(req,res)=>{
 
 //gets Report by exist
 router.get('/deleted/:deleted',(req,res)=>{
-    Controller.getReportByUName(req.params.deleted).then((data)=>{
+    Controller.getReportByDeleted(req.params.deleted).then((data)=>{
         res.status(data.status).send({message:data.message})
     }).catch(
         (err)=>{

@@ -24,6 +24,8 @@ var Report = new mongoose.Schema({
         requird:true
     }
     
-})
+});
 
-exports.modules = mongoose.model('Report', Report);
+mongoose.model('Report', Report);
+
+module.exports = mongoose;
