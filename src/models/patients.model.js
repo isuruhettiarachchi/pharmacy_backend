@@ -26,9 +26,8 @@ var Patient = new mongoose.Schema({
         required: true
     },
     contactNumber: {
-        type: Number,
-        required: true
+        type: String
     }
 })
 
-exports.modules = mongoose.model('Patient', Patient);
+module.exports = mongoose.model('Patient', Patient);
