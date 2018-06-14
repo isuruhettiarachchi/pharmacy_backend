@@ -4,10 +4,12 @@ var express = require('express')
 var mongoose = require('mongoose')
 var bodyparser = require('body-parser')
 var routes = require('./src/routes/routes')
-
+const CORS = require("cors");
 var config = require('./config')
 
 var app = express()
+
+app.use(CORS());
 
 app.use(bodyparser.json())
 
@@ -25,6 +27,6 @@ app.get('/', (req, res) => {
 
 app.use('/', routes)
 
-app.listen(3000, () => {
-    console.log('Server started on port 3000')
+app.listen(3001, () => {
+    console.log('Server started on port 3001')
 })
