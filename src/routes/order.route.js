@@ -1,52 +1,56 @@
 var express=require('express');
 var router=express.Router();
-var bodyparser=require('body-parser');
 
-var Order=require('../models/order.model');
+var Order = require('../controllers/order.controller');
 
 
-router.post('/new',function (req,res,next) {
-    var order=new Order(req.body);
-    order.save().then(function () {
-        res.send(order);
-    }).catch(next)
-});
+router.get('/viewall' , (req, res) => {
+    Order.getAllOrders().then(response => {
+        res.status(response.status).send(response);
+    }).catch(err => {
+        res.status(err.status).send(err);
+    })
+})
 
-router.post('/pay/:id',(req,res,next)=>{
-    Order.find({orderID:req.params.id}).then((data)=>{
-        data.orderStatus='Received/payed';
-        order.findByIdAndUpdate({supplierID:req.params.id},data).then(function (data) {
-            res.json(data);
-        });
 
+
+router.post('/new', (req, res) => {
+    Order.addOrder(req.body).then((response) => {
+        console.log(response)
+        res.status(response.status).send(response);
+    }).catch(err => {
+        console.log(err)
+        res.status(err.status).send(err)
     });
 });
 
-router.get('/view',(req,res,next)=>{
-    Order.find().then((data)=>{
-       res.json(data);
-    });
-});
 
-router.get('/view/:id',(req,res,next)=>{
-    Order.find({orderID:req.params.id}).then((data)=>{
-        res.json(data);
-    });
-});
+router.get('/view/:id' , (req, res) => {
+    Order.getOneOrder(req.params.id).then(response => {
+        res.status(response.status).send(response);
+    }).catch(err => {
+        res.status(err.status).send(err);
+    })
+})
 
 router.put('/update/:id',(req,res,next)=>{
-    Order.findByIdAndUpdate({orderID:req.params.id},req.body).then(function () {
-        Order.findOne({orderID:req.params.id}).then(function (order) {
-            res.send(order);
-        });
-
-    });
+    Order.updateOrder(req.params.id,req.body).then((response)=>{
+        console.log(response);
+        res.status(response.status).send(response);
+    }).catch(err=>{
+        console.log(err)
+        res.status(err.status).send(err)
+    })
 });
 
-router.delete('/delete/:id',(req,res,next)=>{
-    Order.findByIdAndRemove({orderID:req.params.id}).then(function (order) {
-        res.send(order);
-    });
+router.put('/delete/:id',(req,res,next)=>{
+    Order.deleteOrder(req.params.id).then((response)=>{
+        console.log(response);
+        res.status(response.status).send(response);
+    }).catch(err=>{
+        console.log(err)
+        res.status(err.status).send(err)
+    })
 });
 
 module.exports=router;
