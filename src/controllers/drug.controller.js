@@ -46,7 +46,8 @@ module.exports.addDrug = (drug) => {
             dangerLevel: drug.dangerLevel,
             reorderLevel: drug.reorderLevel,
             dosage: drug.dosage,
-            frequency: drug.frequency
+            frequency: drug.frequency,
+            supplier: drug.supplier
         });
 
         Drug.save(err => {
@@ -84,7 +85,7 @@ module.exports.updateDrug = (drug_Id, payload) => {
 
 module.exports.deleteDrug = (drug_Id) => {
     return new Promise((resolve, reject) => {
-        DrugModel.deleteOne({drugId:drug_Id}).then(result => {
+        DrugModel.findOneAndDelete({drugId:drug_Id}).then(result => {
             resolve({
                 status: 200,
                 message: 'drug deleted successfully'

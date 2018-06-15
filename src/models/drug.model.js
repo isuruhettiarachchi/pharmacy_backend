@@ -37,6 +37,10 @@ var drugSchema = new mongoose.Schema({
     },
     frequency: {
         type: String,
+    },
+    supplier: {
+        type: String,
+        required: true
     }
 })
 

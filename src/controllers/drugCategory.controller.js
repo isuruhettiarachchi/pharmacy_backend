@@ -17,16 +17,16 @@ module.exports.getAllDrugCategories = () => {
     });
 }
 
-module.exports.addDrugCategory = (drugCategory) => {
-    console.log('drugCategory ', drugCategory)
+module.exports.addDrugCategory = (payload) => {
+    console.log('drugCategory ', payload)
     return new Promise((resolve, reject) => {
-        const DrugCategory =  new DrugCategory({
+        const drug_category =  new DrugCategory({
             _id: mongoose.Types.ObjectId(),
-            categoryId: drugCategory.categoryId,
-            name: drugCategory.name
+            categoryId: payload.categoryId,
+            name: payload.name
         });
 
-        DrugCategory.save(err => {
+        drug_category.save(err => {
             console.log('a', err);
             
             if (err) {
@@ -40,5 +40,37 @@ module.exports.addDrugCategory = (drugCategory) => {
                 message: 'drug category added successfully'
             });
         });
+    });
+}
+
+module.exports.updateDrugCategory = (drugCategory_Id, payload) => {
+    return new Promise((resolve, reject) => {
+        DrugCategory.update({categoryId:drugCategory_Id}, {$set: payload}).then(result => {
+            resolve({
+                status: 200,
+                message: 'drug category updated successfully'
+            });
+        }).catch(err => {
+            reject({
+                status: 500,
+                error: err
+            });
+        }) ;
+    });
+}
+
+module.exports.deleteDrugCategory = (drugCategory_Id) => {
+    return new Promise((resolve, reject) => {
+        DrugCategory.findOneAndDelete({categoryId:drugCategory_Id}).then(result => {
+            resolve({
+                status: 200,
+                message: 'drug category deleted successfully '
+            });
+        }).catch(err => {
+            reject({
+                status: 500,
+                error: err
+            });
+        }) ;
     });
 }
