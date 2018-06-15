@@ -22,4 +22,14 @@ router.post('/', (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+    patient.removePatient(req.param.id).then(response => {
+        console.log(response)
+        res.status(response.status).send(response);
+    }).catch(err => {
+        console.log(err);
+        res.status(err.status).send(err);
+    })
+})
+
 module.exports = router;
