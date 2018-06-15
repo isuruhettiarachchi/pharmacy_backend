@@ -5,7 +5,8 @@ var mongoose = require('mongoose')
 var bodyparser = require('body-parser')
 var routes = require('./src/routes/routes')
 const CORS = require("cors");
-var config = require('./config')
+var config = require('./config');
+var autoIncrement = require('mongoose-auto-increment');
 
 var app = express()
 
@@ -19,7 +20,10 @@ mongoose.connect(config.db.uri, (err) => {
         process.exit(-1)
     }
     console.log('database connected')
-})
+});
+
+// autoIncrement.initialize(connection);
+
 
 app.get('/', (req, res) => {
     res.send('Hell World')

@@ -10,7 +10,11 @@ var Pharmacists = function() {
 
             const Pharmacist = new PharmacistsSchema({
                 "id":data.id,
-                "name":data.name,
+                "name":data.name, 
+                "nic":data.nic,
+                "address":data.address,
+                "contact":data.contact,
+                "email":data.email,
                 "username":data.username,
                 "password":data.password,
                 "role":data.role
