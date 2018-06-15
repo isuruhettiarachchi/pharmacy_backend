@@ -2,7 +2,7 @@ const mongoose = require('../models/pharmacists.model');
 
 const PharmacistsSchema = mongoose.model('Pharmacist');
 
-var Pharmacists = () =>{
+var Pharmacists = function() {
 
     //add a pharmacist
     this.addPharmacist = (data)=>{
@@ -10,7 +10,11 @@ var Pharmacists = () =>{
 
             const Pharmacist = new PharmacistsSchema({
                 "id":data.id,
-                "name":data.name,
+                "name":data.name, 
+                "nic":data.nic,
+                "address":data.address,
+                "contact":data.contact,
+                "email":data.email,
                 "username":data.username,
                 "password":data.password,
                 "role":data.role
@@ -43,6 +47,19 @@ var Pharmacists = () =>{
         return new Promise((Resolve, Reject)=>{
 
             PharmacistsSchema.find({username:username}).exec().then((data)=>{
+                    Resolve({status:200, message:data});
+                }).catch((err)=>{
+                    Reject({status:500, message:"Unable to find "+err});
+                });
+
+        });
+    };
+
+    //gets a pharmacist by user id
+    this.getPharmacistByID = (id)=>{
+        return new Promise((Resolve, Reject)=>{
+
+            PharmacistsSchema.find({id:id}).exec().then((data)=>{
                     Resolve({status:200, message:data});
                 }).catch((err)=>{
                     Reject({status:500, message:"Unable to find "+err});
@@ -102,7 +119,7 @@ var Pharmacists = () =>{
     this.deletePharmacist = (username) => {
         // id = mongoose.Types.ObjectId(id);
 		return new Promise(function(Resolve,Reject){
-			ReportSchema.remove({username:username}).exec().then(()=>{
+			PharmacistsSchema.remove({username:username}).exec().then(()=>{
 				Resolve({status : 200, message: "Pharmacist deleted"});
 			}).catch(function(err){
 				Reject({status : 500, message:"Pharmacist can not be deleted"});
@@ -114,4 +131,4 @@ var Pharmacists = () =>{
 
 };
 
-module.exports = new Pharmacists;
+module.exports = new Pharmacists();

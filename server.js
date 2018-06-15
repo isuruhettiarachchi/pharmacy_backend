@@ -5,7 +5,10 @@ var mongoose = require('mongoose')
 var cors=require('cors');
 var bodyparser = require('body-parser')
 var routes = require('./src/routes/routes')
-var cors = require('cors')
+
+var config = require('./config');
+
+var app = express()
 
 var config = require('./config')
 
@@ -20,7 +23,10 @@ mongoose.connect(config.db.uri, (err) => {
         process.exit(-1)
     }
     console.log('database connected')
-})
+});
+
+// autoIncrement.initialize(connection);
+
 
 app.get('/', (req, res) => {
     res.send('Hell World')
@@ -29,5 +35,5 @@ app.get('/', (req, res) => {
 app.use('/', routes)
 
 app.listen(3001, () => {
-    console.log('Server started on port 3000')
+    console.log('Server started on port 3001')
 })

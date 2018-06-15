@@ -12,6 +12,8 @@ var reports = require('./reports.route')
 router.use('/patients', patients);
 router.use('/supplier',supplier);
 router.use('/order',order);
+router.use('/pharmacists', pharmacists);
+router.use('/reports', reports);
 router.use('/drug',drug);
 router.use('/drugCategory',drugCategory);
 // router.use('/pharmacists', pharmacists);
