@@ -2,13 +2,14 @@
 
 var express = require('express')
 var mongoose = require('mongoose')
+var cors=require('cors');
 var bodyparser = require('body-parser')
 var routes = require('./src/routes/routes')
 
 var config = require('./config')
 
 var app = express()
-
+app.use(cors())
 app.use(bodyparser.json())
 
 mongoose.connect(config.db.uri, (err) => {

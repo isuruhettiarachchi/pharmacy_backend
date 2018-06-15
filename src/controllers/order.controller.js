@@ -6,7 +6,7 @@ module.exports.getAllOrders = () => {
         Order.find().exec().then(result => {
             resolve({
                 status: 200,
-                supplier: result
+                Order: result
             });
         }).catch(err => {
             reject({
