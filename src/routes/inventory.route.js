@@ -1,22 +1,19 @@
 var express=require('express');
 var router=express.Router();
 
-var supplier = require('../controllers/supplier.controller');
-// var Supplier=require('../models/supplier.model');
+var Stock = require('../controllers/inventory.controller');
 
 
 router.get('/viewall' , (req, res) => {
-    supplier.getAllSuppliers().then(response => {
+    Stock.getAllStock().then(response => {
         res.status(response.status).send(response);
     }).catch(err => {
         res.status(err.status).send(err);
     })
 })
 
-
-
 router.post('/new', (req, res) => {
-    supplier.addSupplier(req.body).then((response) => {
+   Stock.addStock(req.body).then((response) => {
         console.log(response)
         res.status(response.status).send(response);
     }).catch(err => {
@@ -26,16 +23,16 @@ router.post('/new', (req, res) => {
 });
 
 
-router.get('/view/:id' , (req, res) => {
-    supplier.getOneSupplier(req.params.id).then(response => {
+router.get('/view' , (req, res) => {
+    Stock.getOneStock(req.query.drug_id,req.query.batch_id).then(response => {
         res.status(response.status).send(response);
     }).catch(err => {
         res.status(err.status).send(err);
     })
 })
 
-router.put('/update/:id',(req,res,next)=>{
-    supplier.updateSupplier(req.params.id,req.body).then((response)=>{
+router.put('/update',(req,res,next)=>{
+    Stock.updateStock(req.query.drug_id,req.query.batch_id).then((response)=>{
         console.log(response);
         res.status(response.status).send(response);
     }).catch(err=>{
@@ -44,14 +41,5 @@ router.put('/update/:id',(req,res,next)=>{
     })
 });
 
-router.put('/delete/:id',(req,res,next)=>{
-    supplier.deleteSupplier(req.params.id).then((response)=>{
-        console.log(response);
-        res.status(response.status).send(response);
-    }).catch(err=>{
-        console.log(err)
-        res.status(err.status).send(err)
-    })
-});
 
 module.exports=router;

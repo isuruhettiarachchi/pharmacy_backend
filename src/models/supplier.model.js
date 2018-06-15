@@ -27,6 +27,8 @@ var supplierSchema=new mongoose.Schema({
     }
 });
 
+
 var Supplier=mongoose.model('Supplier',supplierSchema);
+
 
 module.exports=Supplier;
