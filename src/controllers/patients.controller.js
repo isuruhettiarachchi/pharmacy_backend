@@ -22,7 +22,6 @@ module.exports.addPatient = (patient) => {
     return new Promise((resolve, reject) => {
         const Patient =  new PatientSchema({
             _id: mongoose.Types.ObjectId(),
-            paitentId: patient.id,
             name: patient.name,
             address: patient.address,
             NIC: patient.nic,
