@@ -4,7 +4,7 @@ var patientBillSchema = require('../models/patientBills.model');
 module.exports.addPayment = (paymentDetails) => {
     return new Promise((resolve, reject) => {
         const payment1 = new patientBillSchema({
-            _id: mongoose.Types.ObjectId(),
+            _id: new mongoose.Types.ObjectId(),
             patient: paymentDetails.patient,
             drugs: paymentDetails.drugs,
             total: paymentDetails.total,
