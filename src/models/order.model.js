@@ -12,11 +12,6 @@ var orderSchema=new mongoose.Schema({
         required:[true,'orderDate is required']
     },
 
-    dueDate:{
-        type:String,
-        required:[true,'due date is required']
-    },
-
     items:[{
         medicineID: {
             type: String,
@@ -24,22 +19,12 @@ var orderSchema=new mongoose.Schema({
         },
         qty: {
             type: String,
-        },
-        company: {
-            type: String,
-            required: [true, 'company is required']
-        },
-        unitPrice: String,
-        subTotal: String,
+        }
     }],
     supplier:{
         type:String,
         required:[true,'supplier required']
     },
-    total:String,
-    discount:String,
-    netTotal:String,
-    orderStatus:String
 
 });
 

@@ -5,10 +5,6 @@ var supplierSchema=new mongoose.Schema({
         type:String,
         required:[true,'supplier id is required']
     },
-    companyName:{
-        type:String,
-        required:[true,'companyName id is required']
-    },
     contactNo:{
         type:String,
         required:[true,'contactNo id is required']
@@ -27,6 +23,8 @@ var supplierSchema=new mongoose.Schema({
     }
 });
 
+
 var Supplier=mongoose.model('Supplier',supplierSchema);
+
 
 module.exports=Supplier;

@@ -5,11 +5,6 @@ var Patient = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
-    paitentId: {
-        type: Number,
-        required: true,
-        unique: true
-    },
     name: {
         type: String,
         required: true
@@ -26,8 +21,7 @@ var Patient = new mongoose.Schema({
         required: true
     },
     contactNumber: {
-        type: Number,
-        required: true
+        type: String
     }
 })
 
