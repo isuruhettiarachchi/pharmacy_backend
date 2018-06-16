@@ -7,7 +7,7 @@ module.exports.getAllStock = () => {
         Stock.find().exec().then(result => {
             resolve({
                 status: 200,
-                supplier: result
+                stock: result
             });
         }).catch(err => {
             reject({
@@ -23,7 +23,7 @@ module.exports.getOneStock = (drug_id,batch_id) => {
         Stock.find({"DrugID":drugID,"bacthID":batch_id}).exec().then(result => {
             resolve({
                 status: 200,
-                supplier: result
+                stock: result
             });
         }).catch(err => {
             reject({
@@ -63,7 +63,7 @@ module.exports.updateStock = (drug_id,batch_id,qty) => {
         Stock.findOneAndUpdate({DrugID:drug_id,batchID:batch_id},updating_stock).exec().then(result => {
             resolve({
                 status: 200,
-                supplier: result
+                stock: result
             });
         }).catch(err => {
             reject({

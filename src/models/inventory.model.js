@@ -6,26 +6,35 @@ var inventorySchema=new mongoose.Schema({
         required:[true,'drugid is required']
     },
     batch:[{
-        bacthID: String,
-        required: [true, 'batchid required'],
+        batchID:{
+            type :String,
+            required:[true,'OrderId isn required']
+        },
+        companyName:{
+            type :String,
+            required:[true,'OrderId isn required']
+        },
 
-        drugName: String,
-        required: [true, 'drugname is required'],
+        receivedDate:{
+            type :String,
+            required:[true,'OrderId isn required']
+        },
 
-        companyName: String,
-        required: [true, 'companyName id is required'],
 
-        receivedDate: String,
-        required: [true, 'drugname is required'],
+        expDate:{
+            type :String,
+            required:[true,'OrderId isn required']
+        },
 
-        expDate: String,
-        required: [true, 'expdate is required'],
+        manDate:{
+            type :String,
+            required:[true,'OrderId isn required']
+        },
 
-        manDate: String,
-        required: [true, 'manDate is required'],
-
-        qty: String,
-        required: [true, 'qty is required'],
+        qty:{
+            type :String,
+            required:[true,'OrderId isn required']
+        },
 
     }]
 
