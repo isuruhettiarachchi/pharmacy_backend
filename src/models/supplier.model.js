@@ -1,9 +1,11 @@
 var mongoose=require('mongoose');
 
+var autoIncrement = require('mongoose-auto-increment-fix');
+autoIncrement.initialize(mongoose);
+
 var supplierSchema=new mongoose.Schema({
     supplierID:{
-        type:String,
-        required:[true,'supplier id is required']
+        type:Number,
     },
     companyName:{
         type:String,
@@ -27,6 +29,12 @@ var supplierSchema=new mongoose.Schema({
     }
 });
 
+supplierSchema.plugin(autoIncrement.plugin, {
+    model: 'Pharmacist',
+    field: 'supplierID',
+    startAt: 1,
+    incrementBy: 1
+});
 
 var Supplier=mongoose.model('Supplier',supplierSchema);
 

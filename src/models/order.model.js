@@ -1,10 +1,12 @@
 var mongoose=require('mongoose');
 
+var autoIncrement = require('mongoose-auto-increment-fix');
+autoIncrement.initialize(mongoose);
+
 var orderSchema=new mongoose.Schema({
 
     orderID:{
-        type :String,
-        required:[true,'OrderId isn required']
+        type :Number
     },
 
     orderDate:{
@@ -25,6 +27,12 @@ var orderSchema=new mongoose.Schema({
         required:[true,'supplier required']
     },
 
+});
+orderSchema.plugin(autoIncrement.plugin, {
+    model: 'Pharmacist',
+    field: 'orderID',
+    startAt: 1,
+    incrementBy: 1
 });
 
 var Order=mongoose.model('Order',orderSchema);
