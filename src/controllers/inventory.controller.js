@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-
+var drugModel = require('../models/drug.model')
 var Stock = require('../models/inventory.model');
 
 module.exports.getAllStock = () => {
     return new Promise((resolve, reject) => {
-        Stock.find().exec().then(result => {
+        Stock.find().populate({ path: 'DrugID', model: drugModel}).exec().then(result => {
             resolve({
                 status: 200,
                 stock: result
@@ -20,7 +20,7 @@ module.exports.getAllStock = () => {
 
 module.exports.getOneStock = (drug_id,batch_id) => {
     return new Promise((resolve, reject) => {
-        Stock.find({"DrugID":drugID,"bacthID":batch_id}).exec().then(result => {
+        Stock.find({"DrugID":drugID,"bacthID":batch_id}).populate({ path: 'DrugID', model: drugModel}).exec().then(result => {
             resolve({
                 status: 200,
                 stock: result
