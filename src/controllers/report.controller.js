@@ -13,7 +13,7 @@ var Reports = function (){
                 id:data.id,
                 name:data.name,
                 type:data.type,
-                deleted:data.deleted,
+                deleted:false,
                 description:data.description
 
             });
