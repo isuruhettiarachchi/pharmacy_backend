@@ -1,8 +1,10 @@
 var mongoose=require('mongoose');
+var drugSchema = require('./drug.model')
 
 var inventorySchema=new mongoose.Schema({
     DrugID:{
-        type:String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: drugSchema,
         required:[true,'drugid is required']
     },
     batch:[{
