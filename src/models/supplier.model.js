@@ -7,11 +7,7 @@ var supplierSchema=new mongoose.Schema({
     },
     companyName:{
         type:String,
-<<<<<<< HEAD
         required:[true,'company name is required']
-=======
-        required:[true,'companyName id is required']
->>>>>>> 3402f729e927bd16e35ecf5d99a6896ee7077142
     },
     contactNo:{
         type:String,
