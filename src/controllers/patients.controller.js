@@ -22,7 +22,6 @@ module.exports.addPatient = (patient) => {
     return new Promise((resolve, reject) => {
         const Patient =  new PatientSchema({
             _id: mongoose.Types.ObjectId(),
-            paitentId: patient.id,
             name: patient.name,
             address: patient.address,
             NIC: patient.nic,
@@ -45,4 +44,22 @@ module.exports.addPatient = (patient) => {
             });
         });
     });
+}
+
+module.exports.removePatient = (id) => {
+    return new Promise((resolve, reject) => {
+        PatientSchema.findByIdAndRemove(id, (err, res) => {
+            if (err) {
+                reject({
+                    status: 500,
+                    error: err
+                });
+            }
+            resolve({
+                status: 200,
+                message: 'patient removed successfully',
+                patients: res
+            })
+        })
+    })
 }
