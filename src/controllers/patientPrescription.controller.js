@@ -28,7 +28,7 @@ module.exports.addNewPrescription = (patient, prescription) => {
         }).catch((err) => {
             console.log('f4',err)
             const newPrescriptionObj = new patientPrescriptionSchema({
-                _id: mongoose.Types.ObjectId(),
+                _id: new mongoose.Types.ObjectId(),
                 patient: patient,
                 prescriptions: prescription
             });
