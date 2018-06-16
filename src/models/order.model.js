@@ -29,7 +29,7 @@ var orderSchema=new mongoose.Schema({
 
 });
 orderSchema.plugin(autoIncrement.plugin, {
-    model: 'Pharmacist',
+    model: 'Order',
     field: 'orderID',
     startAt: 1,
     incrementBy: 1

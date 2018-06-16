@@ -1,6 +1,9 @@
 var mongoose=require('mongoose');
 var drugSchema = require('./drug.model')
 
+var autoIncrement = require('mongoose-auto-increment-fix');
+autoIncrement.initialize(mongoose);
+
 var inventorySchema=new mongoose.Schema({
     DrugID:{
         type: mongoose.Schema.Types.ObjectId,
@@ -9,8 +12,7 @@ var inventorySchema=new mongoose.Schema({
     },
     batch:[{
         batchID:{
-            type :String,
-            required:[true,'OrderId isn required']
+            type :Number
         },
         companyName:{
             type :String,
@@ -40,6 +42,13 @@ var inventorySchema=new mongoose.Schema({
 
     }]
 
+});
+
+inventorySchema.plugin(autoIncrement.plugin, {
+    model: 'Inventory',
+    field: 'batchID',
+    startAt: 1,
+    incrementBy: 1
 });
 
 var Inventory=mongoose.model('Inventory',inventorySchema);
