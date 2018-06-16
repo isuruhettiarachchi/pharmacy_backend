@@ -1,9 +1,15 @@
 var mongoose = require('mongoose');
 var DrugModel = require('../models/drug.model');
+var DrugCategory = require('../models/drugCategory.model');
+var Supplier = require('../models/supplier.model');
 
 module.exports.getAllDrugs = () => {
     return new Promise((resolve, reject) => {
-        DrugModel.find().exec().then(result => {
+        DrugModel.find()
+        .populate({ path: 'categoryId', model: DrugCategory })
+        .populate({ path: 'supplier', model: Supplier })
+        .exec().then(result => {
+            // console.log(result.categoryId.name);
             resolve({
                 status: 200,
                 drugs: result
@@ -38,11 +44,10 @@ module.exports.addDrug = (drug) => {
     return new Promise((resolve, reject) => {
         const Drug =  new DrugModel({
             _id: mongoose.Types.ObjectId(),
-            drugId: drug.drugId,
             categoryId: drug.categoryId,
             name: drug.name,
             price: drug.price,
-            remark: drug.remark,
+            remarks: drug.remarks,
             dangerLevel: drug.dangerLevel,
             reorderLevel: drug.reorderLevel,
             dosage: drug.dosage,

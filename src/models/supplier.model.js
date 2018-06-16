@@ -5,6 +5,10 @@ var supplierSchema=new mongoose.Schema({
         type:String,
         required:[true,'supplier id is required']
     },
+    companyName:{
+        type:String,
+        required:[true,'company name is required']
+    },
     contactNo:{
         type:String,
         required:[true,'contactNo id is required']

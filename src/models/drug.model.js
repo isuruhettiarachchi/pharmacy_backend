@@ -1,4 +1,9 @@
 var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment-fix');
+var DrugCategory = require('../models/drugCategory.model');
+var Supplier = require('../models/supplier.model');
+
+autoIncrement.initialize(mongoose);
 
 var drugSchema = new mongoose.Schema({
     _id: {
@@ -10,7 +15,8 @@ var drugSchema = new mongoose.Schema({
         required: true,
     },
     categoryId: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: DrugCategory,
         required: true,
     },
     name: {
@@ -39,9 +45,17 @@ var drugSchema = new mongoose.Schema({
         type: String,
     },
     supplier: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: Supplier,
         required: true
     }
 })
+
+drugSchema.plugin(autoIncrement.plugin, {
+    model: 'drugSchema',
+    field: 'drugId',
+    startAt: 1,
+    incrementBy: 1
+});
 
 module.exports = mongoose.model('Drug', drugSchema);
