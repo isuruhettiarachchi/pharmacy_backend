@@ -4,7 +4,7 @@ var Stock = require('../models/inventory.model');
 
 module.exports.getAllStock = () => {
     return new Promise((resolve, reject) => {
-        Stock.find().populate({ path: 'DrugID', model: drugModel}).exec().then(result => {
+        Stock.find().populate({ path: 'DrugId', model: drugModel}).exec().then(result => {
             resolve({
                 status: 200,
                 stock: result
