@@ -74,7 +74,7 @@ module.exports.addDrug = (drug) => {
 
 module.exports.updateDrug = (drug_Id, payload) => {
     return new Promise((resolve, reject) => {
-        DrugModel.update({drugId:drug_Id}, {$set: payload}).then(result => {
+        DrugModel.update({_id:drug_Id}, {$set: payload}).then(result => {
             resolve({
                 status: 200,
                 message: 'drug updated successfully'
@@ -90,7 +90,7 @@ module.exports.updateDrug = (drug_Id, payload) => {
 
 module.exports.deleteDrug = (drug_Id) => {
     return new Promise((resolve, reject) => {
-        DrugModel.findOneAndDelete({drugId:drug_Id}).then(result => {
+        DrugModel.findOneAndDelete({_id:drug_Id}).then(result => {
             resolve({
                 status: 200,
                 message: 'drug deleted successfully'

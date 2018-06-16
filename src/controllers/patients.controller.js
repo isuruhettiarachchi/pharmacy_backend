@@ -63,3 +63,19 @@ module.exports.removePatient = (id) => {
         })
     })
 }
+
+module.exports.updatePatient = (patientId, patient) => {
+    return new Promise((resolve, reject) => {
+        PatientSchema.update({_id: patientId}, {$set: patient}).then(() => {
+            resolve({
+                status: 200,
+                message: 'Patient updated successfully'
+            });
+        }).catch(err => {
+            reject({
+                status: 500,
+                err: err
+            })
+        })
+    })
+}

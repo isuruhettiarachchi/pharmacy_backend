@@ -32,4 +32,12 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+    patient.updatePatient(req.params.id, req.body).then(response => {
+        res.status(response.status).send(response)
+    }).catch(err => {
+        res.status(err.status).send(err)
+    })
+})
+
 module.exports = router;
