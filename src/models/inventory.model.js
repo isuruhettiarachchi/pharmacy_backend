@@ -11,6 +11,7 @@ var inventorySchema=new mongoose.Schema({
         required:[true,'drugid is required']
     },
     batch:[{
+
         batchID:{
             type :Number
         },
@@ -38,7 +39,7 @@ var inventorySchema=new mongoose.Schema({
         qty:{
             type :String,
             required:[true,'OrderId isn required']
-        },
+        }
 
     }]
 
