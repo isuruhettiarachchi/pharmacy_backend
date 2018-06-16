@@ -15,7 +15,6 @@ var orderSchema=new mongoose.Schema({
     items:[{
         medicineID: {
             type: String,
-            required: [true, 'medicineID is required']
         },
         qty: {
             type: String,
