@@ -77,15 +77,6 @@ router.put('/type/:type', function(req,res){
 		});
 });
 
-//Update an Report by the id
-router.put('/id/:id', function(req,res){
-
-	Controller.UpdateReportByID(req.params.id, req.body).then(function(data){
-		res.status(data.status).send({message:data.message})
-	}).catch(function(err){
-			res.status(err.status).send({message:err.message});
-		});
-});
 
 //deletes Report by id
 router.delete('/id/:id',(req,res)=>{
