@@ -104,7 +104,7 @@ var Reports = function (){
     this.deleteReport = (id) => {
         // id = mongoose.Types.ObjectId(id);
 		return new Promise(function(Resolve,Reject){
-			ReportSchema.remove({id:id}).exec().then(()=>{
+			ReportSchema.update({id:id},{deleted:true}).exec().then(()=>{
 				Resolve({status : 200, message: "Report deleted"});
 			}).catch(function(err){
 				Reject({status : 500, message:"Report can not be deleted"});
