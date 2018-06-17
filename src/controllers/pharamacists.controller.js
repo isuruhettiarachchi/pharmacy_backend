@@ -34,9 +34,13 @@ var Pharmacists = function() {
         return new Promise((Resolve,Reject)=>{
 
                 PharmacistsSchema.find().exec().then((data)=>{
-                    Resolve({status:200, message: data});
+                    if(data==="{}")
+                        Reject({status:404, message: "No data found"});
+                        
+                    else
+                        Resolve({status:200, message: data});
                 }).catch((err)=>{
-                    Reject({status:500, message:"No data to retrieve "+err});
+                    Reject({status:500, message:"Error Occured "+err});
                 });
 
             });
